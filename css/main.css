@@ -1,0 +1,32 @@
+.box {
+  display:flex;
+  border: 1px solid #34495e;
+  padding:2em;
+}
+.box:hover{
+  background-color:#A9D0F5;
+}
+
+.rightside {
+  border-right:0;
+}
+
+.leftside {
+  border-left:0;
+}
+
+.top {
+  border-top:0;
+}
+
+.bot {
+  border-bottom:0;
+}
+
+.banner {
+  text-align: center;
+  margin-bottom: 5%;
+}
+.one {
+
+}

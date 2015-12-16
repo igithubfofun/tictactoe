@@ -1,0 +1,2 @@
+1.  pseudocode steps and logic
+1.  established basic board creating 9 boxes, added a hover effect for testing purposes
