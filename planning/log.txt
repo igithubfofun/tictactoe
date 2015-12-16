@@ -1,2 +1,6 @@
 1.  pseudocode steps and logic
-1.  established basic board creating 9 boxes, added a hover effect for testing purposes
+2.  established basic board creating 9 boxes, added a hover effect for testing purposes
+3.  started Jquery and JS - setting up listeners to listen for when player clicks on boxes
+    -roadblock - boxes would distort itself when an 'X' or 'O' would be inputted. Made a 'hack' fix
+    by placeholding the box with a space... Will find a better way after MVP is established.
+4.
