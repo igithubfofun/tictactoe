@@ -4,69 +4,79 @@ $(function(){
   var o = 'O';
   var picked;
   var turn;
-  var playerOne = true;
+  var game = true;
+  var playerOne = false;
   var playerTwo = false;
 
 
-  while (playerOne === true){
-
+while (game){
+    game = false;
     $('.box').on('click', function() {
-      picked = $(this).html();
-      console.log(picked);
-      //playerOne = false;
-
+    picked = $(this).html();
+    //console.log(picked);
 
       if (picked === '&nbsp;'){
-          $(this).text(x);
+        $(this).text(x);
+        playerOne = true;
+        }
+
+        if (playerOne){
+        playerOne = false;
+        $('.box').on('click', function() {
+        picked = $(this).html();
+
+        if (picked === '&nbsp;'){
+            $(this).text(x);
+            }
+
+        //if statement for not overwritting a box
+        else if (picked === 'X' || picked === 'O'){
+          console.log("pick again");
+          return;
+          }
+        })
+
+        playerTwo = true;
 
       }
 
-      //if statement for not overwritting a box
-      else if (picked === 'X' || picked === 'O'){
-        console.log("pick again");
-        return;
 
-      }
+      if (playerTwo){
+        playerTwo = false;
+        $('.box').on('click', function() {
+        picked = $(this).html();
 
-      playerOne = false;
-      playerTwo = true;
+        if (picked === '&nbsp;'){
+            $(this).text(o);
+            }
 
+        //if statement for not overwritting a box
+        else if (picked === 'X' || picked === 'O'){
+          console.log("pick again");
+          return;
+          }
+        })
+        playerOne = true;
 
-
+    }
     })
 
-    while (playerTwo === true){
-
-    $('.box').on('click', function() {
-      picked = $(this).html();
-      console.log(picked);
-      //playerOne = false;
-
-
-      if (picked === '&nbsp;'){
-          $(this).text(x);
-
-      }
-
-      //if statement for not overwritting a box
-      else if (picked === 'X' || picked === 'O'){
-        console.log("pick again");
-        return;
-
-      }
-
-      playerOne = true;
-      playerTwo = false;;
 
 
 
-    })
 
- // }
 
-  // $('.box').on('click', function(e) {
-  //   $(this).html(o);
-  // })
+
+
+
+  }
+
+
+
+
+
+
+
 
 
 });
