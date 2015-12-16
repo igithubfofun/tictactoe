@@ -7,10 +7,9 @@ $(function(){
   var game = true;
   var playerOne = false;
   var playerTwo = false;
+  var playerTurn;
 
 
-while (game){
-    game = false;
     $('.box').on('click', function() {
     picked = $(this).html();
     //console.log(picked);
@@ -19,6 +18,7 @@ while (game){
         $(this).text(x);
         playerOne = true;
         }
+
 
         if (playerOne){
         playerOne = false;
@@ -36,13 +36,10 @@ while (game){
           }
         })
 
-        playerTwo = true;
 
       }
 
 
-      if (playerTwo){
-        playerTwo = false;
         $('.box').on('click', function() {
         picked = $(this).html();
 
@@ -56,7 +53,6 @@ while (game){
           return;
           }
         })
-        playerOne = true;
 
     }
     })
