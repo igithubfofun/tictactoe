@@ -7,19 +7,19 @@ $(function(){
   var p1 = [];
   var p2 = [];
   var gameWon = false;
+  var p1Wins = 0;
+  var p2Wins = 0;
+
+
+
 
   var player1Name = prompt("Player One Name: ");
   var player2Name = prompt("Player Two Name: ");
 
-
-    $('#player').append(player1Name + ' vs ' + player2Name);
-
-
+  $('#player').append(player1Name + ' vs ' + player2Name);
 
   $('#restart').on('click', function(){
     window.location.reload();
-
-
 
   })
 
@@ -47,9 +47,14 @@ $(function(){
           p1.includes('seven') && p1.includes('eight') && p1.includes('nine')
           )
         {
-          alert("Player One WINS! hit OK to play again.");
+          //console.log(player1Name);
+          alert(player1Name + " WINS! hit OK to play again.");
+          p1Wins++;
+
+
           window.location.reload();
           gameWon = true;
+
         }
 
         playerTurn += 1;
@@ -76,9 +81,13 @@ $(function(){
           p2.includes('seven') && p2.includes('eight') && p2.includes('nine') //bottom line
           )
         {
-          alert("Player Two WINS! hit OK to play again.");
+          alert(player2Name + " WINS! hit OK to play again.");
+          p2Wins++
+
+
           window.location.reload();
           gameWon = true;
+
         }
 
 
