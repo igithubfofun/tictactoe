@@ -38,9 +38,13 @@
 #restart {
   text-align:center;
   cursor:pointer;
-  margin-bottom:5%x;
-  background:pink;
+  background:#ecf0f1;
   font-family:'Metrophoic', 'sans-serif';
+  margin-bottom:40%;
+  padding:2%;
+}
+#restart:hover{
+  background:#e74c3c;
 }
 
 #player {
@@ -53,13 +57,17 @@
 }
 .x {
 
-  background-color:orange;
   font-family: 'Metrophobic', 'sans-serif';
+  font-weight:bold;
+  color:white;
 
 }
 .o {
 
-  background-color:orange;
   font-family: 'Metrophobic', 'sans-serif';
+  color:white;
 
+}
+.center {
+  justify-content:center;
 }

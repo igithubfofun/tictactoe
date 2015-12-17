@@ -31,7 +31,7 @@ $(function(){
         var selected = $(this).attr('id');
         p1.push(selected);
         $(this).html(picked);
-        $(this).addClass('x')
+        $(this).addClass('x');
 
         $(this).css('pointer-events', 'none');
         $(this).css('background-color', '#3498db');
@@ -47,7 +47,7 @@ $(function(){
           p1.includes('seven') && p1.includes('eight') && p1.includes('nine')
           )
         {
-          alert("Player One wins! hit ok to play again.");
+          alert("Player One WINS! hit OK to play again.");
           window.location.reload();
           gameWon = true;
         }
@@ -60,6 +60,7 @@ $(function(){
       var selected = $(this).attr('id');
       p2.push(selected);
       $(this).text(picked);
+      $(this).addClass('o');
 
       $(this).css('pointer-events', 'none');
       $(this).css('background-color', '#c0392b');
@@ -75,7 +76,7 @@ $(function(){
           p2.includes('seven') && p2.includes('eight') && p2.includes('nine') //bottom line
           )
         {
-          alert("Player Two wins! hit ok to play again.");
+          alert("Player Two WINS! hit OK to play again.");
           window.location.reload();
           gameWon = true;
         }
@@ -85,7 +86,7 @@ $(function(){
     }
 
     if (playerTurn === 9 && gameWon === false){
-      alert("its a draw! hit ok to play again.");
+      alert("its a DRAW! hit OK to play again.");
       window.location.reload();
     }
 
