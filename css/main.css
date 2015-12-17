@@ -3,7 +3,7 @@
 .box {
   display:flex;
   border: 3px solid #f1c40f;
-  padding:2em;
+  padding:1.5em;
   margin: 0;
   justify-content:center;
   border-radius:20px;
@@ -53,9 +53,10 @@
   text-align:center;
   margin-bottom: 5%;
   background-color:#34495e;
-  color:#f39c12;
-  font-size: 16px;
+  color:#f1c40f;
+  font-size: 24px;
   font-family:'Metrophoic', 'sans-serif';
+  padding:4%;
 }
 .x {
 

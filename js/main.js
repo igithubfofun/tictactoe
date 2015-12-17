@@ -11,12 +11,21 @@ $(function(){
   var p2Wins = 0;
 
 
-
-
   var player1Name = prompt("Player One Name: ");
   var player2Name = prompt("Player Two Name: ");
 
   $('#player').append(player1Name + ' vs ' + player2Name);
+
+  $('#cheat').on('click', function(){
+    if (playerTurn % 2 === 0){
+    alert(player1Name + " WINS, YOU CHEATER!");
+    window.location.reload();
+    }
+    else {
+    alert(player2Name + " WINS, YOU CHEATER!");
+    window.location.reload();
+    }
+  });
 
   $('#restart').on('click', function(){
     window.location.reload();
@@ -32,7 +41,6 @@ $(function(){
         p1.push(selected);
         $(this).html(picked);
         $(this).addClass('x');
-
         $(this).css('pointer-events', 'none');
         $(this).css('background-color', '#3498db');
 
