@@ -3,4 +3,6 @@
 3.  started Jquery and JS - setting up listeners to listen for when player clicks on boxes
     -roadblock - boxes would distort itself when an 'X' or 'O' would be inputted. Made a 'hack' fix
     by placeholding the box with a space... Will find a better way after MVP is established.
-4.
+4.  ran into issue using while loops - refactored into if and else statements only
+5.  MVP established - set or statements which took in array of each number saved by which player
+    and used .include in order to determine which number was clicked
