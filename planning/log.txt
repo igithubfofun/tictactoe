@@ -6,3 +6,7 @@
 4.  ran into issue using while loops - refactored into if and else statements only
 5.  MVP established - set or statements which took in array of each number saved by which player
     and used .include in order to determine which number was clicked
+6.  established alert boxes to indicate who won or tied.
+7.  worked on html and css to make board look nice.
+8.  used local storage to save number of wins by both player and ties
+9.  created a secret cheat button

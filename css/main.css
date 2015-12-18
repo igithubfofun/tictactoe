@@ -4,7 +4,6 @@
 body {
   background-color:#95a5a6;
   justify-content:center;
-
 }
 .scoreboard {
   background-color:#34495e;
@@ -34,7 +33,7 @@ body {
   font-weight:900;
   font-size:14px;
 }
-.box {
+.box{
   display:flex;
   border: 3px solid #f1c40f;
   padding:1.5em;
@@ -42,38 +41,31 @@ body {
   justify-content:center;
   border-radius:20px;
   height:100px;
-
 }
 .box:hover{
   background-color:#A9D0F5;
   cursor:pointer;
 }
-
-.rightside {
+.rightside{
   border-right:0;
 }
-
-.leftside {
+.leftside{
   border-left:0;
 }
-
-.top {
+.top{
   border-top:0;
 }
-
-.bot {
+.bot{
   border-bottom:0;
 }
-
-.banner h1 {
+.banner h1{
   text-align: center;
   margin-bottom: 1%;
   font-family: 'Orbitron', sans-serif;
   font-weight:900;
   font-size:30px;
 }
-
-#restart {
+#restart{
   text-align:center;
   cursor:pointer;
   background:#ecf0f1;
@@ -84,8 +76,17 @@ body {
 #restart:hover{
   background:#e74c3c;
 }
-
-#player {
+#clear{
+  text-align:center;
+  cursor:pointer;
+  background:#ecf0f1;
+  font-family:'Indie-Flower', 'sans-serif';
+  padding:2%;
+}
+#clear:hover{
+  background:#e74c3c;
+}
+#player{
   text-align:center;
   margin-bottom: 5%;
   background-color:#34495e;
@@ -94,25 +95,20 @@ body {
   font-family:'Indie-Flower', 'sans-serif';
   padding:4%;
 }
-.x {
-
+.x{
   font-family: 'Indie-Flower', 'sans-serif';
   font-weight:bold;
   color:white;
   font-size:20px;
-
 }
-.o {
-
+.o{
   font-family: 'Indie-Flower', 'sans-serif';
   color:white;
   font-size:20px;
-
 }
-.center {
+.center{
   justify-content:center;
 }
-.cheat {
+.cheat{
   background:black;
 }
-

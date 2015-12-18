@@ -1,11 +1,8 @@
 $(function(){
 
-  var p1wins = localStorage.getItem('player1counter');
-  var p2wins = localStorage.getItem('player2counter');
-  var ties = localStorage.getItem('tie_counter');
-  console.log(p1wins);
-  console.log(p2wins);
-
+  var p1wins = localStorage.getItem('player1counter') || '0';
+  var p2wins = localStorage.getItem('player2counter') || '0';
+  var ties = localStorage.getItem('tie_counter') || '0';
   var x = 'X';
   var o = 'O';
   var picked;
@@ -13,8 +10,6 @@ $(function(){
   var p1 = [];
   var p2 = [];
   var gameWon = false;
-
-
 
   var player1Name = prompt("Player One Name: ");
   if (player1Name === ''){
@@ -31,6 +26,7 @@ $(function(){
       player2Name = "Player 2";
     }
   }
+
   if (player1Name === null){
     player1Name = "Player 1";
   }
@@ -38,33 +34,40 @@ $(function(){
     player2Name = "Player 2";
   }
 
-
   $('#player').append(player1Name + ' vs ' + player2Name);
 
-  $('#p1wins').text(player1Name + " wins: " + p1wins);
+  if (ties === null){
+    $('#p1wins').text(player1Name + ": " + 0);
+  }
+
+  $('#p1wins').text(player1Name + ": " +p1wins);
   $('#ties').text("Ties: " + ties);
-  $('#p2wins').text(player2Name + " wins: " + p2wins);
+  $('#p2wins').text(player2Name + ": " + p2wins);
 
   $('#cheat').on('click', function(){
     if (playerTurn % 2 === 0){
-    picked = x;
-    $('.box').css('background-color', '#3498db');
-    $('.box').addClass('x');
-    $('.box').css('pointer-events', 'none');
-    $('.box').html(picked);
-    alert(player1Name + " WINS, YOU CHEATER!");
-
-    //window.location.reload();
+      picked = x;
+      $('.box').css('background-color', '#3498db');
+      $('.box').addClass('x');
+      $('.box').css('pointer-events', 'none');
+      $('.box').html(picked);
+      p1wins = 99;
+      $('#p1wins').text(player1Name + ": " + p1wins);
+      localStorage.setItem('player1counter', p1wins);
+      alert(player1Name + " WINS, YOU CHEATER!");
+      //window.location.reload();
     }
     else {
-
-    picked = o;
-    $('.box').css('background-color', '#c0392b');
-    $('.box').addClass('o');
-    $('.box').css('pointer-events', 'none');
-    $('.box').html(picked);
-    alert(player2Name + " WINS, YOU CHEATER!");
-    //window.location.reload();
+      picked = o;
+      $('.box').css('background-color', '#c0392b');
+      $('.box').addClass('o');
+      $('.box').css('pointer-events', 'none');
+      $('.box').html(picked);
+      p1wins = 99;
+      $('#p1wins').text(player1Name + ": " + p1wins);
+      localStorage.setItem('player1counter', p1wins);
+      alert(player2Name + " WINS, YOU CHEATER!");
+      //window.location.reload();
     }
   });
 
@@ -73,13 +76,17 @@ $(function(){
 
   })
 
+  $('#clear').on('click', function(){
+    localStorage.clear();
+    alert("Game history cleared!");
+    window.location.reload();
+
+  })
+
   $('.box').on('click', function() {
 
     if (playerTurn % 2 === 0){
         picked = x;
-
-
-
 
         var selected = $(this).attr('id');
         p1.push(selected);
@@ -102,15 +109,16 @@ $(function(){
 
           alert(player1Name + " WINS! Click NEW GAME to play again.");
 
-          if (p1wins === null) {
-              p1wins = 0;
+          if (p1 === null) {
+              p1wins = '0';
           }
           p1wins++;
+          if (p1wins >= 99){
+            p1wins = 99;
+          }
           localStorage.setItem('player1counter', p1wins);
-          $('#p1wins').text(player1Name + " wins: " + p1wins);
-          $('#p2wins').text(player2Name + " wins: " + p2wins);
-
-
+          $('#p1wins').text(player1Name + ": " + p1wins);
+          $('#p2wins').text(player2Name + ": " + p2wins);
           //window.location.reload();
           gameWon = true;
 
@@ -148,14 +156,13 @@ $(function(){
 
           localStorage.setItem('player2counter', p2wins);
 
-          $('#p1wins').text(player1Name + " wins: " + p1wins);
-          $('#p2wins').text(player2Name + " wins: " + p2wins);
+          $('#p1wins').text(player1Name + ": " + p1wins);
+          $('#p2wins').text(player2Name + ": " + p2wins);
 
           //window.location.reload();
           gameWon = true;
 
         }
-
 
       playerTurn += 1;
     }
@@ -173,6 +180,5 @@ $(function(){
     }
 
   })
-
 
 });
