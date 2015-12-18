@@ -10,3 +10,9 @@ TIC TAC TOE!
 -   player may then start a 'New Game' which refreshs the game but keeps count of wins and ties
 -   alternatively, player may choose 'Clear WINS' which erases the history of wins and ties
 -   easter egg! click to the right of new game for an easter egg!
+
+Technologies used:
+    -   Pivotal Tracker
+    -   Bootstrap
+    -   Font Awesome
+    -   JQuery
