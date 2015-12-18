@@ -56,7 +56,7 @@ $(function(){
       $('#p1wins').text(player1Name + ": " + p1wins);
       localStorage.setItem('player1counter', p1wins);
       alert(player1Name + " WINS, YOU CHEATER!");
-      //window.location.reload();
+
     }
 
     //if player 2 cheats
@@ -70,7 +70,7 @@ $(function(){
       $('#p2wins').text(player2Name + ": " + p2wins);
       localStorage.setItem('player2counter', p2wins);
       alert(player2Name + " WINS, YOU CHEATER!");
-      //window.location.reload();
+
     }
   });
 
@@ -122,7 +122,7 @@ $(function(){
           localStorage.setItem('player1counter', p1wins);
           $('#p1wins').text(player1Name + ": " + p1wins);
           $('#p2wins').text(player2Name + ": " + p2wins);
-          //window.location.reload();
+
           gameWon = true;
         }
         playerTurn += 1;
@@ -150,7 +150,7 @@ $(function(){
         {
           alert(player2Name + " WINS! Click NEW GAME to play again.");
 
-          p2wins++;
+
           if (p2wins >= 99){
             p2wins = 99;
           }
@@ -160,7 +160,6 @@ $(function(){
           $('#p1wins').text(player1Name + ": " + p1wins);
           $('#p2wins').text(player2Name + ": " + p2wins);
 
-          //window.location.reload();
           gameWon = true;
 
         }
