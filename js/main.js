@@ -1,5 +1,11 @@
 $(function(){
 
+  var p1wins = localStorage.getItem('player1counter');
+  var p2wins = localStorage.getItem('player2counter');
+  var ties = localStorage.getItem('tie_counter');
+  console.log(p1wins);
+  console.log(p2wins);
+
   var x = 'X';
   var o = 'O';
   var picked;
@@ -7,8 +13,7 @@ $(function(){
   var p1 = [];
   var p2 = [];
   var gameWon = false;
-  var p1Wins = 0;
-  var p2Wins = 0;
+
 
 
   var player1Name = prompt("Player One Name: ");
@@ -18,6 +23,7 @@ $(function(){
       player1Name = "Player 1";
     }
   }
+
   var player2Name = prompt("Player Two Name: ");
   if (player2Name === ''){
     player2Name = prompt("Player Two, I said enter your name: ")
@@ -35,13 +41,28 @@ $(function(){
 
   $('#player').append(player1Name + ' vs ' + player2Name);
 
+  $('#p1wins').text(player1Name + " wins: " + p1wins);
+  $('#ties').text("Ties: " + ties);
+  $('#p2wins').text(player2Name + " wins: " + p2wins);
+
   $('#cheat').on('click', function(){
     if (playerTurn % 2 === 0){
+    picked = x;
+    $('.box').css('background-color', '#3498db');
+    $('.box').addClass('x');
+    $('.box').css('pointer-events', 'none');
+    $('.box').html(picked);
     alert(player1Name + " WINS, YOU CHEATER!");
 
     //window.location.reload();
     }
     else {
+
+    picked = o;
+    $('.box').css('background-color', '#c0392b');
+    $('.box').addClass('o');
+    $('.box').css('pointer-events', 'none');
+    $('.box').html(picked);
     alert(player2Name + " WINS, YOU CHEATER!");
     //window.location.reload();
     }
@@ -80,7 +101,14 @@ $(function(){
         {
 
           alert(player1Name + " WINS! Click NEW GAME to play again.");
-          p1Wins++;
+
+          if (p1wins === null) {
+              p1wins = 0;
+          }
+          p1wins++;
+          localStorage.setItem('player1counter', p1wins);
+          $('#p1wins').text(player1Name + " wins: " + p1wins);
+          $('#p2wins').text(player2Name + " wins: " + p2wins);
 
 
           //window.location.reload();
@@ -112,8 +140,16 @@ $(function(){
           )
         {
           alert(player2Name + " WINS! Click NEW GAME to play again.");
-          p2Wins++
 
+          if (p2wins === null) {
+              p2wins = 0;
+          }
+          p2wins++;
+
+          localStorage.setItem('player2counter', p2wins);
+
+          $('#p1wins').text(player1Name + " wins: " + p1wins);
+          $('#p2wins').text(player2Name + " wins: " + p2wins);
 
           //window.location.reload();
           gameWon = true;
@@ -126,6 +162,13 @@ $(function(){
 
     if (playerTurn === 9 && gameWon === false){
       alert("its a DRAW! Click NEW GAME to play again.");
+      if (ties === null) {
+          ties = 0;
+      }
+      ties++;
+
+      localStorage.setItem('tie_counter', ties);
+      $('#ties').text("Ties: " + ties);
       //window.location.reload();
     }
 
