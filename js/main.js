@@ -12,18 +12,38 @@ $(function(){
 
 
   var player1Name = prompt("Player One Name: ");
+  if (player1Name === ''){
+    player1Name = prompt("Player One, I said enter your name: ")
+    if (player1Name === ''){
+      player1Name = "Player 1";
+    }
+  }
   var player2Name = prompt("Player Two Name: ");
+  if (player2Name === ''){
+    player2Name = prompt("Player Two, I said enter your name: ")
+    if (player2Name === ''){
+      player2Name = "Player 2";
+    }
+  }
+  if (player1Name === null){
+    player1Name = "Player 1";
+  }
+  if (player2Name === null){
+    player2Name = "Player 2";
+  }
+
 
   $('#player').append(player1Name + ' vs ' + player2Name);
 
   $('#cheat').on('click', function(){
     if (playerTurn % 2 === 0){
     alert(player1Name + " WINS, YOU CHEATER!");
-    window.location.reload();
+
+    //window.location.reload();
     }
     else {
     alert(player2Name + " WINS, YOU CHEATER!");
-    window.location.reload();
+    //window.location.reload();
     }
   });
 
@@ -36,6 +56,9 @@ $(function(){
 
     if (playerTurn % 2 === 0){
         picked = x;
+
+
+
 
         var selected = $(this).attr('id');
         p1.push(selected);
@@ -55,12 +78,12 @@ $(function(){
           p1.includes('seven') && p1.includes('eight') && p1.includes('nine')
           )
         {
-          //console.log(player1Name);
-          alert(player1Name + " WINS! hit OK to play again.");
+
+          alert(player1Name + " WINS! Click NEW GAME to play again.");
           p1Wins++;
 
 
-          window.location.reload();
+          //window.location.reload();
           gameWon = true;
 
         }
@@ -74,7 +97,6 @@ $(function(){
       p2.push(selected);
       $(this).text(picked);
       $(this).addClass('o');
-
       $(this).css('pointer-events', 'none');
       $(this).css('background-color', '#c0392b');
 
@@ -89,11 +111,11 @@ $(function(){
           p2.includes('seven') && p2.includes('eight') && p2.includes('nine') //bottom line
           )
         {
-          alert(player2Name + " WINS! hit OK to play again.");
+          alert(player2Name + " WINS! Click NEW GAME to play again.");
           p2Wins++
 
 
-          window.location.reload();
+          //window.location.reload();
           gameWon = true;
 
         }
@@ -103,8 +125,8 @@ $(function(){
     }
 
     if (playerTurn === 9 && gameWon === false){
-      alert("its a DRAW! hit OK to play again.");
-      window.location.reload();
+      alert("its a DRAW! Click NEW GAME to play again.");
+      //window.location.reload();
     }
 
   })
