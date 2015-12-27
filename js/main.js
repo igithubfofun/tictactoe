@@ -176,7 +176,7 @@ $(function(){
 
       localStorage.setItem('tie_counter', ties);
       $('#ties').text("Ties: " + ties);
-      //window.location.reload();
+
     }
 
   })
