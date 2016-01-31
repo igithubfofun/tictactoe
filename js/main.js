@@ -1,5 +1,7 @@
 $(function(){
 
+  var p1name = localStorage.getItem('p1name')
+  var p2name = localStorage.getItem('p2name')
   var p1wins = localStorage.getItem('player1counter') || '0';
   var p2wins = localStorage.getItem('player2counter') || '0';
   var ties = localStorage.getItem('tie_counter') || '0';
@@ -11,37 +13,41 @@ $(function(){
   var p2 = [];
   var gameWon = false;
 
-  //prompt user name, twice if first entry is space, if cancelled will default to Player 1
-  var player1Name = prompt("Player One Name: ");
-  if (player1Name === ''){
-    player1Name = prompt("Player One, I said enter your name: ")
-    if (player1Name === ''){
-      player1Name = "Player 1";
+  // prompt user name, twice if first entry is space, if cancelled will default to Player 1
+  if (localStorage.p1name === undefined || localStorage.p1name === "Player 1"){
+    var p1name = prompt("Player One Name: ");
+    localStorage.setItem('p1name', p1name);
+    if (p1name === ''){
+        p1name = "Player 1";
+        localStorage.setItem('p1name', p1name);
+    }
+    if (p1name === null){
+      p1name = "Player 1";
+      localStorage.setItem('p1name', p1name);
     }
   }
-  if (player1Name === null){
-    player1Name = "Player 1";
-  }
-
-  //prompt user name, twice if first entry is space, if cancelled will default to Player 2
-  var player2Name = prompt("Player Two Name: ");
-  if (player2Name === ''){
-    player2Name = prompt("Player Two, I said enter your name: ")
-    if (player2Name === ''){
-      player2Name = "Player 2";
+  // player1Name=localStorage.p1name;
+  // //prompt user name, twice if first entry is space, if cancelled will default to Player 2
+  if (localStorage.p2name === undefined || localStorage.p2name === "Player 2"){
+    var p2name = prompt("Player Two Name: ");
+    localStorage.setItem('p2name', p2name);
+    if (p2name === ''){
+        p2name = "Player 2";
+        localStorage.setItem('p2name', p2name);
+    }
+    if (p2name === null){
+      p2name = "Player 2";
+      localStorage.setItem('p2name', p2name);
     }
   }
-  if (player2Name === null){
-    player2Name = "Player 2";
-  }
-
+  // player2Name=localStorage.p2name;
   //displays player 1 and player 2 name on middle banner
-  $('#player').append(player1Name + ' vs ' + player2Name);
+  $('#player').append(p1name + ' vs ' + p2name);
 
   //displays scoreboard on the left of current wins/ties
-  $('#p1wins').text(player1Name + ": " + p1wins);
+  $('#p1wins').text(p1name + ": " + p1wins);
   $('#ties').text("Ties: " + ties);
-  $('#p2wins').text(player2Name + ": " + p2wins);
+  $('#p2wins').text(p2name + ": " + p2wins);
 
   //easter egg cheat button to the right of new game
   //if player 1 cheats
@@ -53,10 +59,9 @@ $(function(){
       $('.box').css('pointer-events', 'none');
       $('.box').html(picked);
       p1wins = 99;
-      $('#p1wins').text(player1Name + ": " + p1wins);
+      $('#p1wins').text(p1name + ": " + p1wins);
       localStorage.setItem('player1counter', p1wins);
-      alert(player1Name + " WINS, YOU CHEATER!");
-
+      alert(p1name + " WINS, YOU CHEATER!");
     }
 
     //if player 2 cheats
@@ -67,10 +72,9 @@ $(function(){
       $('.box').css('pointer-events', 'none');
       $('.box').html(picked);
       p2wins = 99;
-      $('#p2wins').text(player2Name + ": " + p2wins);
+      $('#p2wins').text(p2name + ": " + p2wins);
       localStorage.setItem('player2counter', p2wins);
-      alert(player2Name + " WINS, YOU CHEATER!");
-
+      alert(p2name + " WINS, YOU CHEATER!");
     }
   });
 
@@ -100,19 +104,10 @@ $(function(){
         $(this).css('background-color', '#3498db');
 
         //looks at pushed array for player 1 and uses condition to determine if any of these conditions are true
-        if (
-          p1.includes('one') && p1.includes('two') && p1.includes('three') ||
-          p1.includes('one') && p1.includes('four') && p1.includes('seven') ||
-          p1.includes('one') && p1.includes('five') && p1.includes('nine') ||
-          p1.includes('two') && p1.includes('five') && p1.includes('eight') ||
-          p1.includes('three') && p1.includes('five') && p1.includes('seven') ||
-          p1.includes('three') && p1.includes('six') && p1.includes('nine') ||
-          p1.includes('four') && p1.includes('five') && p1.includes('six') ||
-          p1.includes('seven') && p1.includes('eight') && p1.includes('nine')
-          )
+        if (ifWin(p1))
         {
-          alert(player1Name + " WINS! Click NEW GAME to play again.");
-
+          alert(p1name + " WINS! Click NEW GAME to play again.");
+          $('.box').css('pointer-events', 'none');
           p1wins++;
           if (p1wins >= 99){
             p1wins = 99;
@@ -120,8 +115,8 @@ $(function(){
 
           //increments player 2 wins and adds to local storage
           localStorage.setItem('player1counter', p1wins);
-          $('#p1wins').text(player1Name + ": " + p1wins);
-          $('#p2wins').text(player2Name + ": " + p2wins);
+          $('#p1wins').text(p1name + ": " + p1wins);
+          $('#p2wins').text(p2name + ": " + p2wins);
 
           gameWon = true;
         }
@@ -137,33 +132,22 @@ $(function(){
       $(this).css('pointer-events', 'none');
       $(this).css('background-color', '#c0392b');
 
-        if (
-          p2.includes('one') && p2.includes('two') && p2.includes('three') || //top line
-          p2.includes('one') && p2.includes('four') && p2.includes('seven') || //left line
-          p2.includes('one') && p2.includes('five') && p2.includes('nine') || //diagonal down right
-          p2.includes('two') && p2.includes('five') && p2.includes('eight') || //middle down
-          p2.includes('three') && p2.includes('five') && p2.includes('seven') || //diagonal up right
-          p2.includes('three') && p2.includes('six') && p2.includes('nine') || //right line
-          p2.includes('four') && p2.includes('five') && p2.includes('six') || //middle side
-          p2.includes('seven') && p2.includes('eight') && p2.includes('nine') //bottom line
-          )
+        if (ifWin(p2))
         {
-          alert(player2Name + " WINS! Click NEW GAME to play again.");
+          alert(p2name + " WINS! Click NEW GAME to play again.");
 
-
+          $('.box').css('pointer-events', 'none');
           if (p2wins >= 99){
             p2wins = 99;
           }
           //increments player 2 wins and adds to local storage
           p2wins++;
           localStorage.setItem('player2counter', p2wins);
-          $('#p1wins').text(player1Name + ": " + p1wins);
-          $('#p2wins').text(player2Name + ": " + p2wins);
+          $('#p1wins').text(p1name + ": " + p1wins);
+          $('#p2wins').text(p2name + ": " + p2wins);
 
           gameWon = true;
-
         }
-
       playerTurn += 1;
     }
 
@@ -176,9 +160,18 @@ $(function(){
 
       localStorage.setItem('tie_counter', ties);
       $('#ties').text("Ties: " + ties);
-
     }
+  });
 
-  })
-
+function ifWin(p){
+  return(
+  p.includes('one') && p.includes('two') && p.includes('three') || //top line
+  p.includes('one') && p.includes('four') && p.includes('seven') || //left line
+  p.includes('one') && p.includes('five') && p.includes('nine') || //diagonal down right
+  p.includes('two') && p.includes('five') && p.includes('eight') || //middle down
+  p.includes('three') && p.includes('six') && p.includes('nine') || //right line
+  p.includes('three') && p.includes('five') && p.includes('seven') ||
+  p.includes('four') && p.includes('five') && p.includes('six') || //middle side
+  p.includes('seven') && p.includes('eight') && p.includes('nine')) //bottom line
+  }
 });
